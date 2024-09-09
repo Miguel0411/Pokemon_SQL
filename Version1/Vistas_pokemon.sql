@@ -100,7 +100,7 @@ SELECT Orden, Name, [Tipo 1], [Tipo 2], Attack, Defense, Generation
 FROM Pokemon
 WHERE [Tipo 1] = 'Dragon' or [Tipo 2] = 'Dragon';
 
--- Lista de Pokemon de Generaci髇 1
+-- Lista de Pokemon de Generaci贸n 1
 IF OBJECT_ID('V_Generation1', 'V') IS NOT NULL
 DROP VIEW V_Generation1;
 GO
@@ -109,7 +109,7 @@ SELECT Orden, Name, [Tipo 1], [Tipo 2], Attack, Defense
 FROM Pokemon
 WHERE Generation = 1;
 
--- Lista de Pokemon de Generaci髇 2
+-- Lista de Pokemon de Generaci贸n 2
 IF OBJECT_ID('V_Generation2', 'V') IS NOT NULL
 DROP VIEW V_Generation2;
 GO
@@ -145,8 +145,8 @@ SELECT TOP 50 Orden, Name, [Tipo 1], [Tipo 2], Attack, Defense, (Attack + Defens
 FROM Pokemon
 ORDER BY TotalScore DESC;
 
---Lista de los 50 pokemones con mejor ataque y defensa, con una ponderaci髇
---del 60% para el ataque en comparaci髇 a la defensa.
+--Lista de los 50 pokemones con mejor ataque y defensa, con una ponderaci贸n
+--del 60% para el ataque en comparaci贸n a la defensa.
 
 if OBJECT_ID('V_AttackDefense_Attack60','V') is not null
 	DROP VIEW V_AttackDefense_Attack60
@@ -157,7 +157,7 @@ FROM Pokemon
 ORDER BY TotalScore DESC;
 
 
--- Lista de Pokemon con m醩 de 100 puntos de HP
+-- Lista de Pokemon con m谩s de 100 puntos de HP
 IF OBJECT_ID('V_HighHP', 'V') IS NOT NULL
 DROP VIEW V_HighHP;
 GO
@@ -193,7 +193,7 @@ SELECT Orden, Name, [Tipo 1], [Tipo 2], [Sp# Def] AS SpDef, [Sp# Atk] AS SpAtk
 FROM Pokemon
 WHERE [Sp# Def] > 100;
 
--- Lista de Pokemon con total de estad韘ticas mayor a 500
+-- Lista de Pokemon con total de estad铆sticas mayor a 500
 IF OBJECT_ID('V_HighTotal', 'V') IS NOT NULL
 DROP VIEW V_HighTotal;
 GO
@@ -214,7 +214,7 @@ WHERE Speed < 50;
 --=========================================================================================================================
 --DISTRIBUCIONES: 
 
---Distribuci髇 por Generaci髇:
+--Distribuci贸n por Generaci贸n:
 SELECT*FROM Pokemon
 If OBJECT_ID('V_Distribucion_Generacion','V') IS NOT NULL
 DROP VIEW V_Distribucion_Generacion;
@@ -247,7 +247,7 @@ Group by Orden, Name,Legendary
             ELSE 'Non-Legendary' 
          END;*/
 --============================================================================================================================
-/*Distribuci髇 por Tipo Primario: */
+/*Distribuci贸n por Tipo Primario: */
 if OBJECT_ID('V_Distribucion_Tipo_Pri','V')is not null
 DROP VIEW V_Distribucion_Tipo_Pri;
 GO
@@ -292,7 +292,7 @@ GROUP BY
     CAST([Tipo 2] AS NVARCHAR(255))
 
 --=================================================================================================================================
-/*Distribuci髇 por Generaci髇 y Tipo: */
+/*Distribuci贸n por Generaci贸n y Tipo: */
 IF OBJECT_id ('V_Distribucion_Tipo_Gener','V') IS NOT NULL
 DROP VIEW V_Distribucion_Tipo_Gener;
 go
