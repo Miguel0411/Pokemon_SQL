@@ -1,0 +1,7 @@
+# Ignorar archivos temporales:
+*.tmp
+# Ignorar archivos de respaldo:
+*.bak
+
+*.log
+
