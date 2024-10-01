@@ -41,7 +41,7 @@ Group by L.Descripcion;
 
 		# Creacion Vista Distrucion Pokemones Legendarios
 DROP VIEW IF EXISTS V_Distribucion_Legendary;
-CREATE VIEW V_Distribucion_Legendary AS
+CREATE VIEW V_Distribucion_Legendary    AS
 SELECT 
 	CASE 
 		WHEN LegendarioID = 
@@ -63,7 +63,7 @@ SELECT * FROM tipopokemon t;
 DROP VIEW if exists V_Distribucion_PrimerTipo;
 CREATE VIEW V_Distribucion_PrimerTipo AS
 SELECT	
-	T. Descripcion as '1º Tipo',
+	T. Descripcion as `1º Tipo`,
     COUNT(*) AS Cantidad
 FROM pokemonprincipal P 
 Join tipopokemon T on P.Tipo1_ID = T.ID
@@ -75,7 +75,7 @@ SELECT *FROM V_Distribucion_PrimerTipo;
 DROP VIEW IF EXISTS V_Distribucion_SegundoTipo;
 CREATE VIEW V_Distribucion_SegundoTipo AS
 SELECT 
-    IFNULL(t.Descripcion, 'Sin Tipo') AS '2º Tipo',
+    IFNULL(t.Descripcion, 'Sin Tipo') AS `2º Tipo`,
     COUNT(*) AS Cantidad
 FROM 
     PokemonPrincipal P
@@ -90,8 +90,8 @@ SELECT *FROM V_Distribucion_SegundoTipo;
 DROP VIEW IF EXISTS V_Distribucion_DosTipos;
 CREATE VIEW V_Distribucion_DosTipos AS
 SELECT 
-    IFNULL(t1.Descripcion, 'Sin Tipo') AS '1º Tipo',
-    IFNULL(t2.Descripcion, 'Sin Tipo') AS '2º Tipo',
+    IFNULL(t1.Descripcion, 'Sin Tipo') AS `1º Tipo`,
+    IFNULL(t2.Descripcion, 'Sin Tipo') AS `2º Tipo`,
     COUNT(*) AS Cantidad
 FROM 
     PokemonPrincipal P
@@ -111,8 +111,8 @@ SELECT *FROM V_Distribucion_DosTipos;
 DROP VIEW if exists V_Distribucion_TipoGeneracion;
 CREATE VIEW V_Distribucion_TipoGeneracion AS
 SELECT 
-    IFNULL(t1.Descripcion, 'Sin Tipo') AS '1º Tipo',
-    IFNULL(t2.Descripcion, 'Sin Tipo') AS '2º Tipo',
+    IFNULL(t1.Descripcion, 'Sin Tipo') AS `1º Tipo`,
+    IFNULL(t2.Descripcion, 'Sin Tipo') AS `2º Tipo`,
     g.Descripcion AS 'Generacion',
     COUNT(*) AS Cantidad
 FROM 
@@ -135,9 +135,9 @@ SELECT *FROM V_Distribucion_TipoGeneracion;
 DROP VIEW IF exists V_Distribucion_TipoGeneracionLegend;
 CREATE View V_Distribucion_TipoGeneracionLegend AS
 SELECT 
-    IFNULL(T1.Descripcion, 'Sin Tipo') AS '1º Tipo',
-    IFNULL(T2.Descripcion, 'Sin Tipo') AS '2º Tipo',
-    G.Descripcion AS 'Generación',
+    IFNULL(T1.Descripcion, 'Sin Tipo') AS `1º Tipo`,
+    IFNULL(T2.Descripcion, 'Sin Tipo') AS `2º Tipo`,
+    G.Descripcion AS 'Generacion',
     IFNULL(L.Descripcion, 'No Legendario') AS 'Legendario',
     COUNT(*) AS Cantidad
 FROM 
@@ -157,6 +157,8 @@ GROUP BY
     IFNULL(l.Descripcion, 'No Legendario');
 		#Crear Vista:
 SELECT *FROM V_Distribucion_TipoGeneracionLegend;
+
+
 
 
 

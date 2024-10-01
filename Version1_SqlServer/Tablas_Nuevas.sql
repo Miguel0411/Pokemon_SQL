@@ -1,8 +1,8 @@
 /*Escalable para Dashboard
-Realización de la Normalización 3:
--Creación de 3 nuevas tablas: Tabla TipoPokemOn, Tabla Generaciones, Tabla Legendario 
+Realizaciï¿½n de la Normalizaciï¿½n 3:
+-Creaciï¿½n de 3 nuevas tablas: Tabla TipoPokemOn, Tabla Generaciones, Tabla Legendario 
 a partir de la Tabla Pokemon descargado del archivo CSV.
--Creación de la tabla nueva PokemonPrincipal.*/
+-Creaciï¿½n de la tabla nueva PokemonPrincipal.*/
 
 --1. TABLA TIPO POKEMON:
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'TipoPokemon')
@@ -15,36 +15,36 @@ CREATE TABLE TipoPokemon(
 End;
 GO
 /*
-sys.tables: Vista del sistema donde se encuentra información sobre cada tabla.
+sys.tables: Vista del sistema donde se encuentra informaciï¿½n sobre cada tabla.
 Begin y End: Agrupar instrucciones dentro del control de flujo.
 GO: Dividde el Script, como un lote independiente del siguiente.
 */
 
---1.1 Creación comando Drop Table, por si algo sale mal. 
+--1.1 Creaciï¿½n comando Drop Table, por si algo sale mal. 
 Drop table TipoPokemon;
 --1.2 Seleccionar Tabla TipoPokemon:
 select *from dbo.TipoPokemon
--- dbo: Esquema predeterminado, buena práctica.
+-- dbo: Esquema predeterminado, buena prï¿½ctica.
 
---1.3 Inserción datos a la nueva tabla.
+--1.3 Inserciï¿½n datos a la nueva tabla.
 -- Insertar datos a columnas uno por uno.
 INSERT INTO TipoPokemon ([Tipo Nombre], [Descripcion]) VALUES 
-('Grass', 'Type Grass Pokémon'),
-('Fire', 'Type Fire Pokémon'),
-('Water', 'Type Water Pokémon'),
-('Electric', 'Type Electric Pokémon'),
-('Psychic', 'Type Psychic Pokémon'),
-('Dragon', 'Type Dragon Pokémon');
+('Grass', 'Type Grass Pokï¿½mon'),
+('Fire', 'Type Fire Pokï¿½mon'),
+('Water', 'Type Water Pokï¿½mon'),
+('Electric', 'Type Electric Pokï¿½mon'),
+('Psychic', 'Type Psychic Pokï¿½mon'),
+('Dragon', 'Type Dragon Pokï¿½mon');
 
--- Inserción de valores únicos de las columnas [Tipo 1] y [Tipo 2], de la Tabla "Pokemon" en la Tabla "TipoPokemon"
+-- Inserciï¿½n de valores ï¿½nicos de las columnas [Tipo 1] y [Tipo 2], de la Tabla "Pokemon" en la Tabla "TipoPokemon"
 INSERT INTO TipoPokemon (Tipo, Descripcion)
-SELECT DISTINCT Tipo, CONCAT('Type ', Tipo, ' Pokémon') AS Descripcion
+SELECT DISTINCT Tipo, CONCAT('Type ', Tipo, ' Pokï¿½mon') AS Descripcion
 FROM (
     SELECT [Tipo 1] AS Tipo FROM Pokemon WHERE [Tipo 1] IS NOT NULL
     UNION
     SELECT [Tipo 2] AS Tipo FROM Pokemon WHERE [Tipo 2] IS NOT NULL
 ) AS TiposUnicos;
---La creación de esta tabla me permitirá consolidar los tipos de pokemon en una sola tabla que me seriva de referencia. 
+--La creaciï¿½n de esta tabla me permitirï¿½ consolidar los tipos de pokemon en una sola tabla que me seriva de referencia. 
 GO
 
 --2. TABLA GENERACIONES:
@@ -56,12 +56,12 @@ CREATE TABLE Generacion(
     Descripcion nvarchar (255) NULL
 );
 END;
---2.1 Creación comando Drop Table, por si algo sale mal al crear la tabla.
+--2.1 Creaciï¿½n comando Drop Table, por si algo sale mal al crear la tabla.
 Drop table dbo.Generacion;
 --2.2 Seleccionar Tabla Generacion:
 SELECT *FROM dbo.Generacion;
 go
--- 2.3 Inserción de datos a la nueva tabla.
+-- 2.3 Inserciï¿½n de datos a la nueva tabla.
 -- Insertar datos a las columnas uno por uno.
 INSERT INTO Generacion ([NumeroGeneracion], [Descripcion]) VALUES 
 (1, 'Generacion 1'),
@@ -71,7 +71,7 @@ INSERT INTO Generacion ([NumeroGeneracion], [Descripcion]) VALUES
 (5, 'Generacion 5'),
 (6, 'Generacion 6');
 
---Insertar valores únicos 
+--Insertar valores ï¿½nicos 
 Insert into Generacion (NumeroGeneracion, Descripcion)
 SELECT DISTINCT 
 				Generation, 
@@ -79,7 +79,7 @@ SELECT DISTINCT
 FROM dbo.Pokemon;
 GO
 
---3. Creación Tabla Legendario
+--3. Creaciï¿½n Tabla Legendario
 IF NOT EXISTS (SELECT*FROM sys.tables where name = 'Legendario')
 BEGIN
 CREATE TABLE Legendario(
@@ -87,11 +87,11 @@ CREATE TABLE Legendario(
 	Descripcion nvarchar(255) null
 	);
 END;
---3.1 Creación Drop Table:
+--3.1 Creaciï¿½n Drop Table:
 DROP TABLE dbo.Legendario;
 --3.2 Seleccionar Tabla Legendario:
 SELECT*FROM Legendario;
---3.3 Inserción de datos a la nueva tabla.
+--3.3 Inserciï¿½n de datos a la nueva tabla.
 INSERT INTO Legendario (Descripcion)
 SELECT DISTINCT
     CASE
@@ -100,7 +100,7 @@ SELECT DISTINCT
     END AS Descripcion
 FROM dbo.Pokemon;
 GO
---4. Creación Nueva Tabla PokemonPrincipal:
+--4. Creaciï¿½n Nueva Tabla PokemonPrincipal:
 IF NOT EXISTS (SELECT*FROM sys.tables where name = 'PokemonPrincipal')
 BEGIN
 CREATE TABLE PokemonPrincipal(
@@ -128,9 +128,9 @@ CREATE TABLE PokemonPrincipal(
 	REFERENCES Legendario(LegendarioID)
 );
 END;
---4.1 Creación DROP TABLE:
+--4.1 Creaciï¿½n DROP TABLE:
 DROP TABLE PokemonPrincipal;
---4.2 Selección Tabla:
+--4.2 Selecciï¿½n Tabla:
 SELECT *FROM PokemonPrincipal;
 
 --4.3 Insertar datos a la tabla creada:
