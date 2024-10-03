@@ -1,5 +1,6 @@
 ## Normalizacion Tabla
 ### Creacion de Modelo Estrella
-![Alt text](./ERR-ModeloEntidadRelacion.png)
+![Alt text](./Modelo.png)
 
 ## Dashboard:
+![Alt text](./DashboardImagen.png)
